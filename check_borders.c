@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 
-#include "so.h"
+#include "includes/so.h"
 
 static int	check_top_and_bottom(char **map, int line_count)
 {

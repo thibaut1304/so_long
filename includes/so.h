@@ -28,6 +28,13 @@ typedef struct 	s_global
 }				t_global;
 
 void 	record_error(t_global *g, t_list **error, char *str);
+void 	print_error(t_list *error);
+
+void	free_global(t_list *list, t_global g, t_list *error);
+
+int		check_extension(char *file);
+int 	begin(t_global *g, int argc, char *file, t_list **error);
+
 void	check_borders(t_global *g, t_list **error);
 void 	del_list(void *grid);
 int		count_grid(t_global *g, t_list *grid, t_list **error);

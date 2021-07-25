@@ -12,44 +12,6 @@
 
 #include "includes/so.h"
 
-static int		check_extension(char *file)
-{
-	int		i;
-
-	i = 0;
-	while (file[i] != '\0')
-		i++;
-	i -= 4;
-	if (i > 0)
-		return (ft_strequ(&file[i], ".ber"));
-	else
-		return (0);
-}
-
-void 	record_error(t_global *g, t_list **error, char *str)
-{
-	t_list 	*new_error;
-
-	g->error += 1;
-	new_error = ft_lstnew(ft_strdup(str));
-	ft_lstadd_back(error, new_error);
-}
-
-static int 	begin(t_global *g, int argc, char *file, t_list **error)
-{
-	if (argc != 2)
-	{
-		record_error(g, error, "There must be 2 arguments\n");
-		return (1);
-	}
-	else if (!check_extension(file))
-	{
-		record_error(g, error, "s not a '.ber' file\n");
-		return (1);
-	}
-	return (0);
-}
-
 static void		record_map(t_global *g, char *line, t_list **list)
 {
 	(void)g;
@@ -113,33 +75,6 @@ static void 	init(t_global *g, char *file, t_list **list, t_list **error)
 	close(g->fd);
 }
 
-static void		free_global(t_list *list, t_global g, t_list *error)
-{
-	int i;
-
-	i = 0;
-	ft_lstclear(&list, &del_list);
-	ft_lstclear(&error, &del_list);
-	while (i < g.number_rows)
-		free(g.map[i++]);
-	free(g.map);
-}
-
-static void print_error(t_list *error)
-{
-	char *line;
-
-	line = NULL;
-	ft_putstr("Error\n");
-	while (error)
-	{
-		line = ft_strdup(error->content);
-		ft_putstr(line);
-		free(line);
-		error = error->next;
-	}
-}
-
 int		main(int argc, char **argv)
 {
 	t_global g;
@@ -159,8 +94,8 @@ int		main(int argc, char **argv)
 		while (i < g.number_rows)
 			printf("%s\n", g.map[i++]);
 	}
-	print_error(error);
-	printf("%d\n", g.error);
+	if (error)
+		print_error(error);
 	printf("P == %d\n", g.start);
 	printf("E == %d\n", g.exit);
 	printf("C == %d\n", g.collectible);

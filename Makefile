@@ -17,6 +17,10 @@ FLAGS 		= -Wall -Wextra -Werror
 SRCS 		= 	main.c \
 				check_borders.c \
 				maps.c \
+				error.c \
+				memory.c \
+				begin.c \
+				
 
 
 PATH_LIBFT 	= ./libft/

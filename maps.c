@@ -80,13 +80,6 @@ static void	convert_grid(t_global *g, t_list *list, t_list **error)
 	ft_lstclear(&list, &del_list);
 	check_borders(g, error);
 	check_args(g, error);
-	// check_walls(g, g->map->number_rows, g->map->number_columns);
-}
-
-void 	del_list(void *grid)
-{
-	free(grid);
-	grid = NULL;
 }
 
 int		count_grid(t_global *g, t_list *grid, t_list **error)

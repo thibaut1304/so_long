@@ -36,6 +36,8 @@ void	init_var(t_global *g);
 int		check_extension(char *file);
 int 	begin(t_global *g, int argc, char *file, t_list **error);
 
+int		is_in_charset(char c, char *charset);
+
 void	check_borders(t_global *g, t_list **error);
 void 	del_list(void *grid);
 int		count_grid(t_global *g, t_list *grid, t_list **error);

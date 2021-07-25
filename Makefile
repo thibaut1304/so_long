@@ -14,14 +14,14 @@ NAME 		= so_long
 
 FLAGS 		= -Wall -Wextra -Werror
 
-SRCS 		= 	main.c \
-				check_borders.c \
-				maps.c \
+SRCS		= $(addprefix ./srcs/, ${SRCS_FILES})
+
+SRCS_FILES	= 	main.c \
+				parser/check_borders.c \
+				parser/maps.c \
 				error.c \
 				memory.c \
-				begin.c \
-
-
+				parser/begin.c \
 
 PATH_LIBFT 	= ./libft/
 

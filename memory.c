@@ -12,6 +12,16 @@
 
 #include "includes/so.h"
 
+
+void	init_var(t_global *g)
+{
+	g->error = 0;
+	g->map = NULL;
+	g->exit = 0;
+	g->start = 0;
+	g->collectible = 0;
+}
+
 void 	del_list(void *grid)
 {
 	free(grid);
@@ -25,7 +35,10 @@ void		free_global(t_list *list, t_global g, t_list *error)
 	i = 0;
 	ft_lstclear(&list, &del_list);
 	ft_lstclear(&error, &del_list);
-	while (i < g.number_rows)
-		free(g.map[i++]);
-	free(g.map);
+	if (g.map)
+	{
+		while (i < g.number_rows)
+			free(g.map[i++]);
+		free(g.map);
+	}
 }

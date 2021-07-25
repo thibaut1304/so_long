@@ -35,7 +35,7 @@ int 	begin(t_global *g, int argc, char *file, t_list **error)
 	}
 	else if (!check_extension(file))
 	{
-		record_error(g, error, "s not a '.ber' file\n");
+		record_error(g, error, "Is not a '.ber' file\n");
 		return (1);
 	}
 	return (0);

@@ -31,6 +31,7 @@ void 	record_error(t_global *g, t_list **error, char *str);
 void 	print_error(t_list *error);
 
 void	free_global(t_list *list, t_global g, t_list *error);
+void	init_var(t_global *g);
 
 int		check_extension(char *file);
 int 	begin(t_global *g, int argc, char *file, t_list **error);

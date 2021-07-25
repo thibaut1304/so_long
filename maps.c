@@ -46,9 +46,6 @@ static void 	check_args(t_global *g, t_list **error)
 	int j;
 
 	i = -1;
-	g->collectible = 0;
-	g->exit = 0;
-	g->start = 0;
 	while (++i < g-> number_rows)
 	{
 		j = 0;

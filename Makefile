@@ -20,7 +20,7 @@ SRCS 		= 	main.c \
 				error.c \
 				memory.c \
 				begin.c \
-				
+
 
 
 PATH_LIBFT 	= ./libft/

@@ -77,14 +77,14 @@ static void 	init(t_global *g, char *file, t_list **list, t_list **error)
 
 int		main(int argc, char **argv)
 {
-	t_global g;
-	t_list *list;
-	t_list 	*error;
-	int i;
+	t_global 	g;
+	t_list 		*list;
+	t_list 		*error;
+	int 		i;
 
 	list = NULL;
 	error = NULL;
-	g.error = 0;
+	init_var(&g);
 	i = 0;
 	if (!begin(&g, argc, argv[1], &error))
 	{
@@ -100,7 +100,6 @@ int		main(int argc, char **argv)
 	printf("E == %d\n", g.exit);
 	printf("C == %d\n", g.collectible);
 	free_global(list, g, error);
-
 	return (0);
 
 }

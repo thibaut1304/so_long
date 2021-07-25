@@ -32,7 +32,7 @@ int		is_in_charset(char c, char *charset)
 	return (0);
 }
 
-static int	detect_map_line(char *line)
+static int	detect_map_line(char *line, t_list **error, t_global *g)
 {
 	int i;
 
@@ -44,7 +44,10 @@ static int	detect_map_line(char *line)
 	while (line[i])
 	{
 		if (is_in_charset(line[i], "01CEP") == 0)
+		{
+			record_error(g, error, "Invalid character in the map\n");
 			return (0);
+		}
 		i++;
 	}
 	return (1);
@@ -65,7 +68,7 @@ static void 	init(t_global *g, char *file, t_list **list, t_list **error)
 	while (res > 0)
 	{
 		res = get_next_line(g->fd, &line);
-		if (detect_map_line(line))
+		if (detect_map_line(line, error, g))
 			record_map(g, line, list);
 		free(line);
 		line = NULL;

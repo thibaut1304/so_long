@@ -57,8 +57,6 @@ static void 	check_args(t_global *g, t_list **error)
 				g->exit += 1;
 			else if (g->map[i][j] == 'P')
 				g->start += 1;
-			else if (!is_in_charset(g->map[i][j], "01CEP"))
-				return (record_error(g, error, "Invalid character in the map\n"));
 			j++;
 		}
 	}

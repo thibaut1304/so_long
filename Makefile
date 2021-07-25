@@ -17,7 +17,7 @@ FLAGS 		= -Wall -Wextra -Werror
 SRCS 		= 	main.c \
 				check_borders.c \
 				maps.c \
-				
+
 
 PATH_LIBFT 	= ./libft/
 
@@ -29,13 +29,19 @@ RM 			= rm -f
 
 # PENSER A RETIRER LE MODE DEBUG -g
 .c.o:
-			@gcc ${FLAGS} ${HEADER} -c $< -o ${<:.c=.o}
+			@gcc -g ${FLAGS} ${HEADER} -c $< -o ${<:.c=.o}
 
 all:		${NAME}
 
 $(NAME): 	${OBJS}
 			@make bonus -C libft/
-			@gcc $(FLAGS) $(HEADER) $(OBJS) -o $(NAME) -L ${PATH_LIBFT} -lft -L ${PATH_MLX} -lmlx -lXext -lX11 -lm
+			@gcc -g $(FLAGS) $(HEADER) $(OBJS) -o $(NAME) -L ${PATH_LIBFT} -lft -L ${PATH_MLX} -lmlx -lXext -lX11 -lm
+
+ex:			${NAME}
+			./${NAME} maps/map.ber
+
+ev:			${NAME}		
+			@~/.local/bin/colour-valgrind -v --show-leak-kinds=all --tool=memcheck --leak-check=full  --track-origins=yes ./${NAME} maps/map.ber
 
 clean:	
 			${RM} ${OBJS}

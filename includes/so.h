@@ -21,11 +21,16 @@ typedef struct 	s_global
 	int 	fd;
 	int 	number_columns;
 	int 	number_rows;
+	int 	start;
+	int 	collectible;
+	int 	exit;
+	int 	error;
 }				t_global;
 
-void	check_borders(t_global *g, int line_count, int largest_line);
+void 	record_error(t_global *g, t_list **error, char *str);
+void	check_borders(t_global *g, t_list **error);
 void 	del_list(void *grid);
-int		count_grid(t_global *g, t_list *grid);
+int		count_grid(t_global *g, t_list *grid, t_list **error);
 
 
 #endif

@@ -28,7 +28,45 @@ static int		count_cols(t_list *grid)
 	return (max);
 }
 
-static void	convert_grid(t_global *g, t_list *list)
+static void 	check_number_args(t_global *g, t_list **error)
+{
+	if (g->collectible < 1 || g->exit < 1 || g->start < 1)
+		record_error(g, error, "You have less than 1 collection entry or exit\n");
+	if (g->start > 1)
+		record_error(g, error, "You have more than 1 entry\n");
+	if (g->exit > 1)
+		record_error(g, error, "You have more than 1 exit\n");
+	if (g->number_rows >= g->number_columns)
+		record_error(g, error, "The map is not rectangular\n");
+}
+
+static void 	check_args(t_global *g, t_list **error)
+{
+	int i;
+	int j;
+
+	i = -1;
+	g->collectible = 0;
+	g->exit = 0;
+	g->start = 0;
+	while (++i < g-> number_rows)
+	{
+		j = 0;
+		while (j < g->number_columns)
+		{
+			if (g->map[i][j] == 'C')
+				g->collectible += 1;
+			else if (g->map[i][j] == 'E')
+				g->exit += 1;
+			else if (g->map[i][j] == 'P')
+				g->start += 1;
+			j++;
+		}
+	}
+	check_number_args(g, error);
+}
+
+static void	convert_grid(t_global *g, t_list *list, t_list **error)
 {
 	int i;
 
@@ -40,7 +78,8 @@ static void	convert_grid(t_global *g, t_list *list)
 		list = list->next;
 	}
 	ft_lstclear(&list, &del_list);
-	check_borders(g, g->number_rows, g->number_columns);
+	check_borders(g, error);
+	check_args(g, error);
 	// check_walls(g, g->map->number_rows, g->map->number_columns);
 }
 
@@ -50,7 +89,7 @@ void 	del_list(void *grid)
 	grid = NULL;
 }
 
-int		count_grid(t_global *g, t_list *grid)
+int		count_grid(t_global *g, t_list *grid, t_list **error)
 {
 	int column;
 	int rows;
@@ -59,7 +98,7 @@ int		count_grid(t_global *g, t_list *grid)
 	rows = ft_lstsize(grid);
 	if (!column || !rows)
 	{
-		ft_putstr("Map has 0 columns or 0 rows\n");
+		record_error(g, error, "Map has 0 columns or 0 rows\n");
 		return (0);
 	}
 	g->map = (char **)malloc(sizeof(char *) * rows + 1);
@@ -70,6 +109,6 @@ int		count_grid(t_global *g, t_list *grid)
 	// 	append_error(g, "", "Not enough memory to malloc the map\n");
 	// 	return (0);
 	// }
-	convert_grid(g, grid);
+	convert_grid(g, grid, error);
 	return (1);
 }

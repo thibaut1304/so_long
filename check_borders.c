@@ -30,7 +30,7 @@ static int	check_top_and_bottom(char **map, int line_count)
 	return (flag);
 }
 
-static int	check_left_and_right(char **map, int largest_line, t_global *g)
+static int	check_left_and_right(char **map, t_global *g)
 {
 	int i;
 	int j;
@@ -47,22 +47,22 @@ static int	check_left_and_right(char **map, int largest_line, t_global *g)
 	i = -1;
 	while (++i < g->number_rows)
 	{
-		j = largest_line - 1;
+		j = g->number_columns - 1;
 		if (map[i][j] != '1')
 			flag = 1;
 	}
 	return (flag);
 }
 
-void		check_borders(t_global *g, int line_count, int largest_line)
+void		check_borders(t_global *g, t_list **error)
 {
 	int		flag;
 	char	**map;
 
 	flag = 0;
 	map = g->map;
-	flag += check_top_and_bottom(map, line_count);
-	flag += check_left_and_right(map, largest_line, g);
+	flag += check_top_and_bottom(map, g->number_rows);
+	flag += check_left_and_right(map, g);
 	if (flag)
-		ft_putstr("Map is not correctly closed at borders\n");
+		record_error(g, error, "Map is not correctly closed at borders\n");
 }

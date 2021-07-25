@@ -38,6 +38,8 @@ typedef struct 	s_global
 void 	record_error(t_global *g, t_list **error, char *str);
 void 	print_error(t_list *error);
 
+void	init_ptr_mlx(t_global *g);
+
 void	free_global(t_list *list, t_global g, t_list *error);
 void	init_var(t_global *g);
 

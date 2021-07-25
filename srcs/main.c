@@ -37,6 +37,12 @@ static void 	init(t_global *g, char *file, t_list **list, t_list **error)
 	close(g->fd);
 }
 
+static void 	load_map(t_global *g)
+{
+	init_ptr_mlx(g);
+	mlx_loop(g->ptr.mlx_ptr);
+}
+
 int		main(int argc, char **argv)
 {
 	t_global 	g;
@@ -52,16 +58,18 @@ int		main(int argc, char **argv)
 	{
 		init(&g, argv[1], &list, &error);
 		count_grid(&g, list, &error);
+		if (!error)
+		{
+			ft_lstclear(&list, &del_list);
+			load_map(&g);
+		}
 		//affichage double tab
 	}
-	if (g.map)
-		while (i < g.number_rows)
-			printf("%s\n", g.map[i++]);
+	// if (g.map)
+	// 	while (i < g.number_rows)
+	// 		printf("%s\n", g.map[i++]);
 	if (error)
 		print_error(error);
-	printf("P == %d\n", g.start);
-	printf("E == %d\n", g.exit);
-	printf("C == %d\n", g.collectible);
 	free_global(list, g, error);
 	return (0);
 

@@ -19,37 +19,49 @@
 // 	g->img->adr = NULL;
 // }
 
-static void		free_ptr(t_ptr *ptr)
+static void		free_ptr(t_global *g)
 {
-	if (ptr->mlx_ptr)
+	if (g->ptr.mlx_ptr)
 	{
-		if (ptr->win_ptr)
+		if (g->ptr.win_ptr)
 		{
 			// if (g->img->img)
 				// free_image(g);
-			mlx_destroy_window(ptr->mlx_ptr, ptr->win_ptr);
+			mlx_destroy_window(g->ptr.mlx_ptr, g->ptr.win_ptr);
 		}
-		mlx_destroy_display(ptr->mlx_ptr);
-		free(ptr->mlx_ptr);
-		ptr->mlx_ptr = NULL;
+		mlx_destroy_display(g->ptr.mlx_ptr);
+		free(g->ptr.mlx_ptr);
+		g->ptr.mlx_ptr = NULL;
 	}
 }
 
+static void 	free_g(t_global g)
+{
+	int i;
 
-static int 	close_cub(t_ptr *ptr)
+	i = 0;
+	if (g.map)
+	{
+		while (i < g.number_rows)
+			free(g.map[i++]);
+		free(g.map);
+	}
+}
+
+static int 	close_cub(t_global *g)
 {
 		printf("Sortie du programme\n");
-		free_ptr(ptr);
-		// free_everything(all);
+		free_ptr(g);
+		free_g(*g);
+		// free_global(list, g, error);
 		exit (0);
 }
 
-static void	init_ptr_mlx(t_ptr *ptr)
+void	init_ptr_mlx(t_global *g)
 {
-	ptr->mlx_ptr = mlx_init();
-	ptr->win_ptr = mlx_new_window(ptr->mlx_ptr, 800, 400, "Test Window");
-	mlx_hook(ptr->win_ptr, 33, 1L << 17, &close_cub, ptr);
-	mlx_loop(ptr->mlx_ptr);
+	g->ptr.mlx_ptr = mlx_init();
+	g->ptr.win_ptr = mlx_new_window(g->ptr.mlx_ptr, 800, 400, "Test Window");
+	mlx_hook(g->ptr.win_ptr, 33, 1L << 17, &close_cub, g);
 }
 
 void	init_var(t_global *g)
@@ -59,7 +71,6 @@ void	init_var(t_global *g)
 	g->exit = 0;
 	g->start = 0;
 	g->collectible = 0;
-	init_ptr_mlx(&g->ptr);
 }
 
 void 	del_list(void *grid)

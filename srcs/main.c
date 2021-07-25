@@ -70,9 +70,8 @@ void 	load_map(t_global *g)
 
 	mlx_hook(g->window.win_ptr, 3, 1L << 1, key_release, &g->player);
 	mlx_hook(g->window.win_ptr, 2, 1L << 0, exit_window, g);
-	mlx_hook(g->window.win_ptr, 33, 1L << 17, &close_cub, g);
 	// mlx_loop_hook(g->win.mlx_p, render, g);
-	// mlx_hook(g->win.win_ptr, 33, 1L << 17, &end_sl, g);
+	mlx_hook(g->window.win_ptr, 33, 1L << 17, &close_cub, g);
 	mlx_loop(g->window.mlx_ptr);
 }
 

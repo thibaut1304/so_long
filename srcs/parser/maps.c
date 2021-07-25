@@ -46,7 +46,7 @@ static void 	check_args(t_global *g, t_list **error)
 	int j;
 
 	i = -1;
-	while (++i < g-> number_rows)
+	while (++i < g->number_rows)
 	{
 		j = 0;
 		while (j < g->number_columns)

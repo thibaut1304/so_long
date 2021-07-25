@@ -40,6 +40,7 @@ static void 	init(t_global *g, char *file, t_list **list, t_list **error)
 static void 	load_map(t_global *g)
 {
 	init_ptr_mlx(g);
+	mlx_hook(g->ptr.win_ptr, 33, 1L << 17, &close_cub, g);
 	mlx_loop(g->ptr.mlx_ptr);
 }
 
@@ -48,12 +49,10 @@ int		main(int argc, char **argv)
 	t_global 	g;
 	t_list 		*list;
 	t_list 		*error;
-	int 		i;
 
 	list = NULL;
 	error = NULL;
 	init_var(&g);
-	i = 0;
 	if (!begin(&g, argc, argv[1], &error))
 	{
 		init(&g, argv[1], &list, &error);
@@ -65,9 +64,10 @@ int		main(int argc, char **argv)
 		}
 		//affichage double tab
 	}
+	// int i = 0;
 	// if (g.map)
-	// 	while (i < g.number_rows)
-	// 		printf("%s\n", g.map[i++]);
+		// while (i < g.number_rows)
+			// printf("%s\n", g.map[i++]);
 	if (error)
 		print_error(error);
 	free_global(list, g, error);

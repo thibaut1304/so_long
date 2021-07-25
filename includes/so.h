@@ -30,6 +30,18 @@
 
 #define RED 0xFC031A
 
+typedef struct  s_player
+{
+	float x;
+	float y;
+	int turn_direction; 	// -1 -> lesft; 1-< right
+	int walk_direction;
+	// int rotation_direction;
+	// float rotation_angle; 	// PI/2
+	float move_speed; 		//default 3.0
+	// float rotation_speed; 	// 3 * (PI / 180)
+}				t_player;
+
 typedef struct 	s_img
 {
 	void 	*img;
@@ -37,9 +49,31 @@ typedef struct 	s_img
 	int 	bits_per_pxl;
 	int 	line_length;
 	int 	endian;
-	// int 	wid;
-	// int 	hei;
+	int 	w;
+	int 	h;
 }				t_img;
+
+typedef struct 	s_texture
+{
+	void 	*ptr;
+	char 	*data;
+	char 	*name;
+	int 	bits_per_pxl;
+	int 	line_length;
+	int 	endian;
+	int 	w;
+	int 	h;
+}				t_texture;
+
+typedef struct s_win
+{
+	void		*mlx_ptr;
+	void		*win_ptr;
+	char		*name;
+	t_img		img;
+	int			h;
+	int			w;
+}				t_win;
 
 typedef struct 	s_ptr
 {
@@ -47,11 +81,28 @@ typedef struct 	s_ptr
 	void 	*win_ptr;
 }				t_ptr;
 
+// typedef struct 	s_pos
+// {
+// 	int i;
+// 	int y;
+// }				t_pos;
+
+// typedef struct 	s_base
+// {
+// 	t_pos	start;
+// 	t_pos	exit;
+// 	t_pos	player;
+// }				t_base;
+
 typedef struct 	s_global
 {
 	char 	**map;
+	t_texture 	texture[8];
 	t_ptr	ptr;
 	t_img	img;
+	t_win 	window;
+	t_player 	player;
+
 	int 	fd;
 	int 	number_columns;
 	int 	number_rows;
@@ -59,11 +110,13 @@ typedef struct 	s_global
 	int 	collectible;
 	int 	exit;
 	int 	error;
+	// t_base 	begin;
 }				t_global;
 
 void 	record_error(t_global *g, t_list **error, char *str);
 void 	print_error(t_list *error);
 
+void	init_var(t_global *g);
 void	init_ptr_mlx(t_global *g);
 int 	close_cub(t_global *g);
 

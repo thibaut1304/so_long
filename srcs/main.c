@@ -37,12 +37,13 @@ static void 	init(t_global *g, char *file, t_list **list, t_list **error)
 	close(g->fd);
 }
 
-static void 	load_map(t_global *g)
+void 	load_map(t_global *g)
 {
 	init_ptr_mlx(g);
 	mlx_hook(g->ptr.win_ptr, 33, 1L << 17, &close_cub, g);
 	mlx_loop(g->ptr.mlx_ptr);
 }
+
 
 int		main(int argc, char **argv)
 {

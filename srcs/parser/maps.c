@@ -56,7 +56,11 @@ static void 	check_args(t_global *g, t_list **error)
 			else if (g->map[i][j] == 'E')
 				g->exit += 1;
 			else if (g->map[i][j] == 'P')
+			{
 				g->start += 1;
+				g->player.x = i;
+				g->player.y = j;
+			}
 			j++;
 		}
 	}

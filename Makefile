@@ -22,7 +22,9 @@ SRCS_FILES	= 	main.c \
 				error.c \
 				memory.c \
 				parser/begin.c \
-				utils/utils.c
+				utils/utils.c \
+				init.c \
+				
 
 PATH_LIBFT 	= ./libft/
 

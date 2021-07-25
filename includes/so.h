@@ -32,11 +32,13 @@
 
 typedef struct 	s_img
 {
-	void *img;
-	char *adr;
-	int bits_per_pxl;
-	int line_length;
-	int endian;
+	void 	*img;
+	char 	*adr;
+	int 	bits_per_pxl;
+	int 	line_length;
+	int 	endian;
+	// int 	wid;
+	// int 	hei;
 }				t_img;
 
 typedef struct 	s_ptr

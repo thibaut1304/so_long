@@ -71,8 +71,8 @@ void	init_var(t_global *g)
 	g->collectible = 0;
 	g->number_rows = -1;
 	g->number_columns = -1;
-	g->ptr.mlx_ptr = NULL;
-	g->ptr.win_ptr = NULL;
+	// g->ptr.mlx_ptr = NULL;
+	// g->ptr.win_ptr = NULL;
 	g->fd = 0;
 	init_window(&g->window);
 	init_image(&g->img);

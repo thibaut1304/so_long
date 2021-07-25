@@ -16,6 +16,8 @@
 #include "../libft/libft.h"
 #include "../minilibx/mlx.h"
 
+#include <assert.h>
+
 #define ARROW_UP 65362
 #define ARROW_RIGHT 65363
 #define ARROW_DOWN 65364
@@ -75,11 +77,11 @@ typedef struct s_win
 	int			w;
 }				t_win;
 
-typedef struct 	s_ptr
-{
-	void 	*mlx_ptr;
-	void 	*win_ptr;
-}				t_ptr;
+// typedef struct 	s_ptr
+// {
+// 	void 	*mlx_ptr;
+// 	void 	*win_ptr;
+// }				t_ptr;
 
 // typedef struct 	s_pos
 // {
@@ -98,7 +100,7 @@ typedef struct 	s_global
 {
 	char 	**map;
 	t_texture 	texture[8];
-	t_ptr	ptr;
+	// t_ptr	ptr;
 	t_img	img;
 	t_win 	window;
 	t_player 	player;
@@ -112,6 +114,10 @@ typedef struct 	s_global
 	int 	error;
 	// t_base 	begin;
 }				t_global;
+
+int 	key_release(int key, t_player *player);
+int 	exit_window(int key, t_global *all);
+
 
 void 	record_error(t_global *g, t_list **error, char *str);
 void 	print_error(t_list *error);

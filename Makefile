@@ -24,6 +24,8 @@ SRCS_FILES	= 	main.c \
 				parser/begin.c \
 				utils/utils.c \
 				init.c \
+				key_events/key_events.c \
+				
 				
 
 PATH_LIBFT 	= ./libft/

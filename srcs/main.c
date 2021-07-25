@@ -37,11 +37,43 @@ static void 	init(t_global *g, char *file, t_list **list, t_list **error)
 	close(g->fd);
 }
 
+void	init_ptr_mlx(t_global *g)
+{
+	// char *path = "./textures/door.xpm";
+
+	g->window.mlx_ptr = mlx_init();
+	// g->img.img = mlx_new_image(g->ptr.mlx_ptr, 800, 400);
+	// g->img.img = mlx_xpm_file_to_image(g->window.mlx_ptr, path, &g->img.w, &g->img.h);
+	// g->window.win_ptr = mlx_new_window(g->window.mlx_ptr, 800, 400, "Test Window");
+	// g->img.adr = mlx_get_data_addr(g->img.img, &g->img.bits_per_pxl, &g->img.line_length, &g->img.endian);
+	// my_mlx_put_pxl(&g->img, 50, 50, RED);
+	// mlx_put_image_to_window(g->window.mlx_ptr, g->window.win_ptr, g->img.img, 0, 0);
+}
+
+void	load_imgage(t_win *win)
+{
+	win->img.img = mlx_new_image(win->mlx_ptr, win->w, win->h);
+	win->img.adr = mlx_get_data_addr(win->img.img, &win->img.bits_per_pxl,
+			&win->img.line_length, &win->img.endian);
+}
+
+void	load_window(t_win *win)
+{
+	win->win_ptr = mlx_new_window(win->mlx_ptr, win->w, win->h, "so_long");
+}
+
 void 	load_map(t_global *g)
 {
 	init_ptr_mlx(g);
-	mlx_hook(g->ptr.win_ptr, 33, 1L << 17, &close_cub, g);
-	mlx_loop(g->ptr.mlx_ptr);
+	load_imgage(&g->window);
+	load_window(&g->window);
+
+	mlx_hook(g->window.win_ptr, 3, 1L << 1, key_release, &g->player);
+	mlx_hook(g->window.win_ptr, 2, 1L << 0, exit_window, g);
+	mlx_hook(g->window.win_ptr, 33, 1L << 17, &close_cub, g);
+	// mlx_loop_hook(g->win.mlx_p, render, g);
+	// mlx_hook(g->win.win_ptr, 33, 1L << 17, &end_sl, g);
+	mlx_loop(g->window.mlx_ptr);
 }
 
 

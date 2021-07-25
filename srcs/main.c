@@ -12,47 +12,6 @@
 
 #include "../includes/so.h"
 
-static void		record_map(t_global *g, char *line, t_list **list)
-{
-	(void)g;
-	t_list	*new_elem;
-
-	new_elem = ft_lstnew(ft_strdup(line));
-	ft_lstadd_back(list, new_elem);
-}
-
-int		is_in_charset(char c, char *charset)
-{
-	while (*charset)
-	{
-		if (c == *charset)
-			return (1);
-		charset++;
-	}
-	return (0);
-}
-
-static int	detect_map_line(char *line, t_list **error, t_global *g)
-{
-	int i;
-
-	i = 0;
-	if (!line)
-		return (0);
-	if (*line == '\0')
-		return (0);
-	while (line[i])
-	{
-		if (is_in_charset(line[i], "01CEP") == 0)
-		{
-			record_error(g, error, "Invalid character in the map\n");
-			return (0);
-		}
-		i++;
-	}
-	return (1);
-}
-
 static void 	init(t_global *g, char *file, t_list **list, t_list **error)
 {
 	int res;
@@ -69,7 +28,7 @@ static void 	init(t_global *g, char *file, t_list **list, t_list **error)
 	{
 		res = get_next_line(g->fd, &line);
 		if (detect_map_line(line, error, g))
-			record_map(g, line, list);
+			record_map(line, list);
 		free(line);
 		line = NULL;
 	}

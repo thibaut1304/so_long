@@ -22,8 +22,11 @@ SRCS_FILES	= 	main.c \
 				error.c \
 				memory.c \
 				parser/begin.c \
+				utils/utils.c
 
 PATH_LIBFT 	= ./libft/
+
+PATH_MLX	= ./minilibx/
 
 HEADER		= -I ./includes
 

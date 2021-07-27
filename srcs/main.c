@@ -40,9 +40,6 @@ static void 	init(t_global *g, char *file, t_list **list, t_list **error)
 void	init_ptr_mlx(t_global *g)
 {
 	g->window.mlx_ptr = mlx_init();
-	g->texture[0].name = "./textures/wall.xpm";
-	g->texture[1].name = "./textures/door.xpm";
-	g->texture[2].name = "./textures/empty.xpm";
 	// g->texture[0].adr = mlx_get_data_addr()
 	// g->window.win_ptr = mlx_new_window(g->window.mlx_ptr, 800, 400, "Test Window");
 	// g->img.adr = mlx_get_data_addr(g->img.img, &g->img.bits_per_pxl, &g->img.line_length, &g->img.endian);
@@ -160,17 +157,31 @@ int	first_display(t_global *g)
 	return (0);
 }
 
+void 	load_texture(t_global *g)
+{
+	int i;
+
+	i = 0;
+	g->texture[0].name = ft_strdup("./textures/wall.xpm");
+	g->texture[1].name = ft_strdup("./textures/door.xpm");
+	g->texture[2].name = ft_strdup("./textures/empty.xpm");
+	while (i < 3)
+	{
+		g->texture[i].ptr = mlx_xpm_file_to_image(g->window.mlx_ptr, g->texture[i].name, &g->texture[i].w, &g->texture[i].h);
+		g->texture[i].data = mlx_get_data_addr(g->texture[i].ptr, &g->texture[i].bits_per_pxl, &g->texture[i].line_length, &g->texture[i].endian);
+		i++;
+	}
+}
 void 	load_map(t_global *g)
 {
 	init_ptr_mlx(g);
 	load_imgage(g);
 	load_window(g);
-	g->texture[0].ptr = mlx_xpm_file_to_image(g->window.mlx_ptr, g->texture[0].name, &g->texture[0].w, &g->texture[0].h);
-	g->texture[1].ptr = mlx_xpm_file_to_image(g->window.mlx_ptr, g->texture[1].name, &g->texture[1].w, &g->texture[1].h);
-	g->texture[2].ptr = mlx_xpm_file_to_image(g->window.mlx_ptr, g->texture[2].name, &g->texture[2].w, &g->texture[2].h);
-	g->texture[0].data = mlx_get_data_addr(g->texture[0].ptr, &g->texture[0].bits_per_pxl, &g->texture[0].line_length, &g->texture[0].endian);
-	g->texture[1].data = mlx_get_data_addr(g->texture[1].ptr, &g->texture[1].bits_per_pxl, &g->texture[1].line_length, &g->texture[1].endian);
-	g->texture[2].data = mlx_get_data_addr(g->texture[2].ptr, &g->texture[2].bits_per_pxl, &g->texture[2].line_length, &g->texture[2].endian);
+	load_texture(g);
+	// g->texture[1].ptr = mlx_xpm_file_to_image(g->window.mlx_ptr, g->texture[1].name, &g->texture[1].w, &g->texture[1].h);
+	// g->texture[2].ptr = mlx_xpm_file_to_image(g->window.mlx_ptr, g->texture[2].name, &g->texture[2].w, &g->texture[2].h);
+	// g->texture[1].data = mlx_get_data_addr(g->texture[1].ptr, &g->texture[1].bits_per_pxl, &g->texture[1].line_length, &g->texture[1].endian);
+	// g->texture[2].data = mlx_get_data_addr(g->texture[2].ptr, &g->texture[2].bits_per_pxl, &g->texture[2].line_length, &g->texture[2].endian);
 	
 	// display(g, 0, 0, 0);
 	first_display(g);

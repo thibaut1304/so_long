@@ -48,15 +48,7 @@ static void 	free_g(t_global g)
 	}
 }
 
-int 	close_cub(t_global *g)
-{
-		printf("Sortie du programme\n");
-		free_ptr(g);
-		assert (g->window.img.img == NULL);
-		free_g(*g);
-		// free_global(list, g, error);
-		exit (0);
-}
+
 
 void 	my_mlx_put_pxl(t_img *img, int x, int y, int color)
 {
@@ -77,9 +69,44 @@ void 	del_list(void *grid)
 	grid = NULL;
 }
 
+void 	free_texture(t_global *g)
+{
+	int i;
+
+	i = 0;
+	while (i < 3)
+	{
+		if (g->texture[i].ptr)
+		{
+			mlx_destroy_image(g->window.mlx_ptr, g->texture[i].ptr);
+		
+			g->texture[i].ptr = NULL;
+			g->texture[i].data = NULL;
+		}
+		if (g->texture[i].name)
+		{
+			free(g->texture[i].name);
+			g->texture[i].name = NULL;
+		}
+		i++;
+	}
+}
+
 void		free_global(t_list *list, t_global g, t_list *error)
 {
 	ft_lstclear(&list, &del_list);
 	ft_lstclear(&error, &del_list);
+	free_texture(&g);
 	free_g(g);
+}
+
+int 	close_cub(t_global *g)
+{
+		printf("Sortie du programme\n");
+		free_texture(g);
+		free_ptr(g);
+		assert (g->window.img.img == NULL);
+		free_g(*g);
+		// free_global(list, g, error);
+		exit (0);
 }

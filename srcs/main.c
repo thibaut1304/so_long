@@ -29,6 +29,8 @@ static void 	init(t_global *g, char *file, t_list **list, t_list **error)
 		res = get_next_line(g->fd, &line);
 		if (detect_map_line(line, error, g))
 			record_map(line, list);
+		if (*error)
+			break ;
 		free(line);
 		line = NULL;
 	}

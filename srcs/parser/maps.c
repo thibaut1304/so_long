@@ -48,8 +48,8 @@ static void 	check_args(t_global *g, t_list **error)
 	i = -1;
 	while (++i < g->number_rows)
 	{
-		j = 0;
-		while (j < g->number_columns)
+		j = -1;
+		while (++j < g->number_columns)
 		{
 			if (g->map[i][j] == 'C')
 				g->collectible += 1;
@@ -61,7 +61,6 @@ static void 	check_args(t_global *g, t_list **error)
 				g->player.x = i;
 				g->player.y = j;
 			}
-			j++;
 		}
 	}
 	check_number_args(g, error);

@@ -62,8 +62,11 @@ void 	my_mlx_put_pxl(t_img *img, int x, int y, int color)
 {
 	char *dst;
 
-	dst = img->adr + (y * img->line_length + x * (img->bits_per_pxl / 8));
-	*(unsigned int*)dst = color;
+	if (x >= 0 && y >= 0)
+	{
+		dst = img->adr + (y * img->line_length + x * (img->bits_per_pxl / 8));
+		*(unsigned int*)dst = color;
+	}
 }
 
 

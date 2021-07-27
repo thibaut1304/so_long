@@ -2,7 +2,7 @@
 static char *door_open[] = {
 /* columns rows colors chars-per-pixel */
 "32 32 5 1 ",
-"  c None",
+"  c none",
 ". c #7D3007",
 "X c #AF5423",
 "o c #80878C",

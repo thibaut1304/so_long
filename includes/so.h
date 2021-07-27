@@ -106,7 +106,12 @@ typedef struct 	s_global
 	t_player 	player;
 
 	int 	fd;
+	int 	size;
 	int 	number_columns;
+	int 	w;
+	int 	h;
+	int 	x_pxl;
+	int 	y_pxl;
 	int 	number_rows;
 	int 	start;
 	int 	collectible;

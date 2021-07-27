@@ -118,6 +118,7 @@ typedef struct 	s_global
 int 	key_release(int key, t_player *player);
 int 	exit_window(int key, t_global *all);
 
+void 	my_mlx_put_pxl(t_img *img, int x, int y, int color);
 
 void 	record_error(t_global *g, t_list **error, char *str);
 void 	print_error(t_list *error);

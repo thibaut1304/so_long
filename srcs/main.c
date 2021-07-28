@@ -153,14 +153,25 @@ void 	load_texture(t_global *g)
 void			update_player(t_global *g)
 {
 	// int			move;
-	// int			x;
-	// int			y;
-	g->player.x -= g->player.walk_direction;
-	g->player.y += g->player.turn_direction;
-	g->move += 1;
-	ft_putstr("Move :");
-	ft_putnbr(g->move);
-	ft_putstr("\n");
+	int			x;
+	int			y;
+
+	x = g->player.x - g->player.walk_direction;
+	y = g->player.y + g->player.turn_direction;
+	if (g->map[x][y] != '1' || (x >= g->number_rows && x <= g->number_rows )||
+		(y >= g->number_columns && y <= g->number_columns ))
+	{
+		g->player.x = x;
+		g->player.y = y;
+		if (g->player.turn_direction != 0 || g->player.walk_direction != 0)
+		{
+			g->move += 1;
+			ft_putstr("Move :");
+			ft_putnbr(g->move);
+			ft_putstr("\n");
+		}
+	}
+
 
 	// all->player->rotation_angle += all->player->turn_direction * all->player->rotation_speed;
 	// all->player->rotation_angle = normalize_angle(all->player->rotation_angle);

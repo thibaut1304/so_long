@@ -74,7 +74,7 @@ void 	free_texture(t_global *g)
 	int i;
 
 	i = 0;
-	while (i < 3)
+	while (i < 5)
 	{
 		if (g->texture[i].ptr)
 		{

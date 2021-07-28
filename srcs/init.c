@@ -71,7 +71,7 @@ void	init_var(t_global *g)
 	g->collectible = 0;
 	g->number_rows = -1;
 	g->number_columns = -1;
-	g->size = 60;
+	g->size = 40;
 	g->w = 0;
 	g->h = 0;
 	g->x_pxl = 0;

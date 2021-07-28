@@ -128,8 +128,12 @@ void	select_texture(t_global *g, int i, int j)
 {
 	if (g->map[i][j] == '1')
 		display(g, i, j, 0);
-	else if (g->map[i][j] == '0')
+	else if (g->map[i][j] == 'P')
 		display(g, i, j, 2);
+	else if (g->map[i][j] == 'C')
+		display(g, i, j, 3);
+	else if (g->map[i][j] == 'E')
+		display(g, i, j, 4);
 	else
 		display(g, i, j, 1);
 
@@ -164,10 +168,12 @@ void 	load_texture(t_global *g)
 	int i;
 
 	i = 0;
-	g->texture[0].name = ft_strdup("./textures/wall.xpm");
-	g->texture[1].name = ft_strdup("./textures/door.xpm");
-	g->texture[2].name = ft_strdup("./textures/empty.xpm");
-	while (i < 3)
+	g->texture[0].name = ft_strdup("./textures/icones8/mur.xpm");
+	g->texture[1].name = ft_strdup("./textures/icones8/empty.xpm");
+	g->texture[2].name = ft_strdup("./textures/icones8/homme.xpm");
+	g->texture[3].name = ft_strdup("./textures/icones8/medaille.xpm");
+	g->texture[4].name = ft_strdup("./textures/icones8/precision.xpm");
+	while (i < 5)
 	{
 		g->texture[i].ptr = mlx_xpm_file_to_image(g->window.mlx_ptr, g->texture[i].name, &g->texture[i].w, &g->texture[i].h);
 		g->texture[i].data = mlx_get_data_addr(g->texture[i].ptr, &g->texture[i].bits_per_pxl, &g->texture[i].line_length, &g->texture[i].endian);

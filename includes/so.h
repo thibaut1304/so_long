@@ -92,6 +92,7 @@ typedef struct 	s_global
 	int 	exit;
 	int 	error;
 	int 	move;
+	int 	end;
 }				t_global;
 
 char	*add_spaces(char *str, int largest_line);

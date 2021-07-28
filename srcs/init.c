@@ -74,6 +74,7 @@ void	init_var(t_global *g)
 	g->y_pxl = 0;
 	g->move = 0;
 	g->fd = 0;
+	g->end = 0;
 	init_window(&g->window);
 	init_image(&g->img);
 	init_player(&g->player);

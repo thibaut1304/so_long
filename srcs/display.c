@@ -70,5 +70,7 @@ int	first_display(t_global *g)
 			select_texture(g, i, j);
 	}
 	mlx_put_image_to_window(g->window.mlx_ptr, g->window.win_ptr, g->window.img.img, 0, 0);
+	if (g->end == 1)
+		close_cub(g);
 	return (0);
 }

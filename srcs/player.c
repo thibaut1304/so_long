@@ -18,8 +18,9 @@ static int 	check_move(t_global *g, int x, int y)
 			return (1);
 		if (g->collectible == 0 && g->map[x][y] == 'E')
 		{
+			g->end = 1;
 			ft_putstr("Good Game !\n");
-			close_cub(g);
+			// close_cub(g);
 		}
 		return (0);
 }

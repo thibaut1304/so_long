@@ -71,6 +71,9 @@ int	first_display(t_global *g)
 	}
 	mlx_put_image_to_window(g->window.mlx_ptr, g->window.win_ptr, g->window.img.img, 0, 0);
 	if (g->end == 1)
+	{
+		ft_putstr("Good Game !\n");
 		close_cub(g);
+	}
 	return (0);
 }

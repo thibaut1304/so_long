@@ -29,7 +29,9 @@ SRCS_FILES	= 	main.c \
 				display.c \
 				images.c \
 				textures.c \
-				player.c
+				player.c \
+				memory_2.c \
+				
 				
 
 PATH_LIBFT 	= ./libft/

@@ -19,7 +19,7 @@ static void		free_image(t_global *g)
 	g->window.img.adr = NULL;
 }
 
-static void		free_ptr(t_global *g)
+void		free_ptr(t_global *g)
 {
 	if (g->window.mlx_ptr)
 	{
@@ -35,7 +35,7 @@ static void		free_ptr(t_global *g)
 	}
 }
 
-static void 	free_g(t_global g)
+void 	free_g(t_global g)
 {
 	int i;
 
@@ -46,27 +46,6 @@ static void 	free_g(t_global g)
 			free(g.map[i++]);
 		free(g.map);
 	}
-}
-
-
-
-void 	my_mlx_put_pxl(t_img *img, int x, int y, int color)
-{
-	char *dst;
-
-	if (x >= 0 && y >= 0)
-	{
-		dst = img->adr + (y * img->line_length + x * (img->bits_per_pxl / 8));
-		*(unsigned int*)dst = color;
-	}
-}
-
-
-
-void 	del_list(void *grid)
-{
-	free(grid);
-	grid = NULL;
 }
 
 void 	free_texture(t_global *g)
@@ -100,13 +79,3 @@ void		free_global(t_list *list, t_global g, t_list *error)
 	free_g(g);
 }
 
-int 	close_cub(t_global *g)
-{
-		printf("End game ...\n");
-		free_texture(g);
-		free_ptr(g);
-		assert (g->window.img.img == NULL);
-		free_g(*g);
-		// free_global(list, g, error);
-		exit (0);
-}

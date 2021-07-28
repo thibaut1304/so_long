@@ -37,10 +37,6 @@ static void 	init_player(t_player *player)
 	player->y = -1;
 	player->turn_direction = 0;
 	player->walk_direction = 0;
-	// g->player->rotation_direction = 0;
-	// g->player->rotation_angle = 0;
-	player->move_speed = 3.0;
-	// g->player->rotation_speed = 3 * (M_PI / 180);
 }
 
 static void	init_texture(t_global *g)

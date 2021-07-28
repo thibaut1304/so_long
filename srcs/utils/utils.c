@@ -16,19 +16,14 @@ int	detect_map_line(char *line, t_list **error, t_global *g)
 {
 	int i;
 
-	i = 0;
-	if (!line)
-		return (0);
-	if (*line == '\0')
-		return (0);
-	while (line[i])
+	i = -1;
+	while (line[++i])
 	{
 		if (is_in_charset(line[i], "01CEP") == 0)
 		{
 			record_error(g, error, "Invalid character in the map\n");
 			return (0);
 		}
-		i++;
 	}
 	return (1);
 }
@@ -50,4 +45,28 @@ int		is_in_charset(char c, char *charset)
 		charset++;
 	}
 	return (0);
+}
+
+char	*add_spaces(char *str, int largest_line)
+{
+	int		i;
+	char	*res;
+
+	i = 0;
+	res = malloc(sizeof(char *) * largest_line + 1);
+	if (!res)
+		return (NULL);
+	while (str[i])
+	{
+		res[i] = str[i];
+		i++;
+	}
+	while (i < largest_line)
+	{
+		res[i] = ' ';
+		i++;
+	}
+	res[i] = '\0';
+	free(str);
+	return (res);
 }

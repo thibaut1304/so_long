@@ -12,7 +12,7 @@
 
 #include "../../includes/so.h"
 
-static int		count_cols(t_list *grid)
+static int 	count_cols(t_list *grid)
 {
 	int max;
 	int i;
@@ -76,6 +76,9 @@ static void	convert_grid(t_global *g, t_list *list, t_list **error)
 		list = list->next;
 	}
 	ft_lstclear(&list, &del_list);
+	i = -1;
+	while (++i < g->number_rows)
+		g->map[i] = add_spaces(g->map[i], g->number_columns);
 	check_borders(g, error);
 	check_args(g, error);
 }

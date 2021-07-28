@@ -121,8 +121,13 @@ typedef struct 	s_global
 	// t_base 	begin;
 }				t_global;
 
-void			update_player(t_global *g);
+void	update_player(t_global *g);
 int		first_display(t_global *g);
+int		color_utils(t_texture text, int x, int y);
+void	init_ptr_mlx(t_global *g);
+int		first_display(t_global *g);
+void 	load_texture(t_global *g);
+void	load_imgage(t_global *g);
 
 int 	key_release(int key, t_player *player);
 int 	exit_window(int key, t_global *all);

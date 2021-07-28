@@ -102,7 +102,7 @@ void		free_global(t_list *list, t_global g, t_list *error)
 
 int 	close_cub(t_global *g)
 {
-		printf("Sortie du programme\n");
+		printf("End game ...\n");
 		free_texture(g);
 		free_ptr(g);
 		assert (g->window.img.img == NULL);

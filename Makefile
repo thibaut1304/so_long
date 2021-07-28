@@ -25,7 +25,11 @@ SRCS_FILES	= 	main.c \
 				utils/utils.c \
 				init.c \
 				key_events/key_events.c \
-				
+				utils/mlx_utils.c \
+				display.c \
+				images.c \
+				textures.c \
+				player.c
 				
 
 PATH_LIBFT 	= ./libft/

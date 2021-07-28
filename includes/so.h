@@ -34,8 +34,8 @@
 
 typedef struct  s_player
 {
-	float x;
-	float y;
+	int x;
+	int y;
 	int turn_direction; 	// -1 -> lesft; 1-< right
 	int walk_direction;
 	// int rotation_direction;
@@ -117,8 +117,12 @@ typedef struct 	s_global
 	int 	collectible;
 	int 	exit;
 	int 	error;
+	int 	move;
 	// t_base 	begin;
 }				t_global;
+
+void			update_player(t_global *g);
+int		first_display(t_global *g);
 
 int 	key_release(int key, t_player *player);
 int 	exit_window(int key, t_global *all);

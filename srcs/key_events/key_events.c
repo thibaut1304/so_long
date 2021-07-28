@@ -24,7 +24,8 @@ int exit_window(int key, t_global *all)
 		all->player.turn_direction = -1;
 	else if (key == KEYBORD_ESC)
 		close_cub(all);
-	// update_player(all);
+	update_player(all);
+	first_display(all);
 	return (0);
 }
 

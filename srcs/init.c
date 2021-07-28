@@ -76,6 +76,7 @@ void	init_var(t_global *g)
 	g->h = 0;
 	g->x_pxl = 0;
 	g->y_pxl = 0;
+	g->move = 0;
 	// g->ptr.mlx_ptr = NULL;
 	// g->ptr.win_ptr = NULL;
 	g->fd = 0;

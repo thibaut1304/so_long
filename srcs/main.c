@@ -42,15 +42,15 @@ static void 	init(t_global *g, char *file, t_list **list, t_list **error)
 void	init_ptr_mlx(t_global *g)
 {
 	g->window.mlx_ptr = mlx_init();
-	// g->texture[0].adr = mlx_get_data_addr()
-	// g->window.win_ptr = mlx_new_window(g->window.mlx_ptr, 800, 400, "Test Window");
-	// g->img.adr = mlx_get_data_addr(g->img.img, &g->img.bits_per_pxl, &g->img.line_length, &g->img.endian);
 }
 
 void	load_imgage(t_global *g)
 {
-	int y = g->size * g->number_rows;
-	int x = g->size * g->number_columns;
+	int y;
+	int x;
+
+	y = g->size * g->number_rows;
+	x = g->size * g->number_columns;
 	g->w = x;
 	g->h = y;
 	g->window.img.img = mlx_new_image(g->window.mlx_ptr, x, y);
@@ -67,14 +67,6 @@ int	grep_color(t_texture text, int x, int y)
 {
 	char	*dst;
 
-	if (x < 0)
-		x = 0;
-	if (y < 0)
-		y = 0;
-	if (x > text.w)
-		x = text.w;
-	if (y > text.h)
-		y = text.h;
 	dst = text.data + (y * text.line_length + x * text.bits_per_pxl / 8);
 	return (*(unsigned int *)dst);
 }
@@ -85,42 +77,28 @@ void	print_texture(t_global *g, int x, int y, int id)
 	int	background;
 
 	color = grep_color(g->texture[id], x, y);
-	background = grep_color(g->texture[id], 5, 5);
+	background = grep_color(g->texture[id], 0, 0);
 	if (color != background)
 	{
 		if (x + g->x_pxl <= g->w && y + g->y_pxl <= g->h)
 			my_mlx_put_pxl(&g->window.img, x + g->x_pxl, y + g->y_pxl, color);
 	}
-	// else
-		// my_mlx_put_pxl(&g->window.img, x + g->x_pxl, y + g->y_pxl, RED);
-
-	// static int i = 0;
-	// printf("%d\n", i++);
 }
 
 int	display(t_global *g, int h, int w, int id)
 {
-	printf("map[%d][%d] \n", h, w);
-	int width = 0;
+	int width;
+	int height;
+
+	width = -1;
 	g->x_pxl = w * g->size;
 	g->y_pxl = h * g->size;
-	// printf("test\n");
-	while (width < g->texture[id].w)
+	while (++width < g->texture[id].w)
 	{
-		int height = 0;
-		while (height < g->texture[id].h)
-		{
-	// printf("Passage numero : %d\n", i++);
-
+		height = -1;
+		while (++height < g->texture[id].h)
 			print_texture(g, width, height, id);
-			// my_mlx_put_pxl(&g->window.img, width, height, RED);
-			height++;
-		}
-		width++;
 	}
-
-	// mlx_put_image_to_window(g->window.mlx_ptr, g->window.win_ptr,
-		// get_img_ptr(mlx, 0), 0, 0);
 	return (0);
 }
 
@@ -129,14 +107,13 @@ void	select_texture(t_global *g, int i, int j)
 	if (g->map[i][j] == '1')
 		display(g, i, j, 0);
 	else if (g->map[i][j] == 'P')
-		display(g, i, j, 2);
+		display(g, g->player.x, g->player.y, 2);
 	else if (g->map[i][j] == 'C')
 		display(g, i, j, 3);
 	else if (g->map[i][j] == 'E')
 		display(g, i, j, 4);
 	else
 		display(g, i, j, 1);
-
 }
 
 int	first_display(t_global *g)
@@ -144,22 +121,14 @@ int	first_display(t_global *g)
 	int		j;
 	int		i;
 
-	i = 0;
-	while (i < g->number_rows)
+	i = -1;
+	while (++i < g->number_rows)
 	{
-		j = 0;
-		while (j < g->number_columns)
-		{
-	// printf("map[%d][%d] \n", i, j);
-
+		j = -1;
+		while (++j < g->number_columns)
 			select_texture(g, i, j);
-			// my_mlx_put_pxl(&g->window.img, width, height, RED);
-			j++;
-		}
-		i++;
 	}
-// 	// mlx_put_image_to_window(g->window.mlx_ptr, g->window.win_ptr,
-// 		// get_img_ptr(mlx, 0), 0, 0);
+	mlx_put_image_to_window(g->window.mlx_ptr, g->window.win_ptr, g->window.img.img, 0, 0);
 	return (0);
 }
 
@@ -180,25 +149,50 @@ void 	load_texture(t_global *g)
 		i++;
 	}
 }
+
+void			update_player(t_global *g)
+{
+	// int			move;
+	// int			x;
+	// int			y;
+	g->player.x -= g->player.walk_direction;
+	g->player.y += g->player.turn_direction;
+	g->move += 1;
+	ft_putstr("Move :");
+	ft_putnbr(g->move);
+	ft_putstr("\n");
+
+	// all->player->rotation_angle += all->player->turn_direction * all->player->rotation_speed;
+	// all->player->rotation_angle = normalize_angle(all->player->rotation_angle);
+		// move_step = all->player->walk_direction * all->player->move_speed;
+		// x = all->player->x + cos(all->player->rotation_angle) * move_step;
+		// y = all->player->y + sin(all->player->rotation_angle) * move_step;
+	// if (all->player->rotation_direction != 0)
+	// {
+			// ang = all->player->rotation_angle + ((M_PI / 2) * all->player->rotation_direction);
+			// x += cos(ang) * all->player->move_speed;
+			// y += sin(ang) * all->player->move_speed;
+	// }
+	// if (is_not_wall(x, y, all))
+	// {
+		// all->player->x = x;
+		// all->player->y = y;
+	// }
+	// printf("%f || %f \n", all->player->x, all->player->y);
+	// generate_map(all);
+	// printf("%f\n", all->player->rotation_angle);
+	// generate_player(all);
+}
+
 void 	load_map(t_global *g)
 {
 	init_ptr_mlx(g);
 	load_imgage(g);
 	load_window(g);
 	load_texture(g);
-	// g->texture[1].ptr = mlx_xpm_file_to_image(g->window.mlx_ptr, g->texture[1].name, &g->texture[1].w, &g->texture[1].h);
-	// g->texture[2].ptr = mlx_xpm_file_to_image(g->window.mlx_ptr, g->texture[2].name, &g->texture[2].w, &g->texture[2].h);
-	// g->texture[1].data = mlx_get_data_addr(g->texture[1].ptr, &g->texture[1].bits_per_pxl, &g->texture[1].line_length, &g->texture[1].endian);
-	// g->texture[2].data = mlx_get_data_addr(g->texture[2].ptr, &g->texture[2].bits_per_pxl, &g->texture[2].line_length, &g->texture[2].endian);
-	
-	// display(g, 0, 0, 0);
-	first_display(g);
-	mlx_put_image_to_window(g->window.mlx_ptr, g->window.win_ptr, g->window.img.img, 0, 0);
-	// mlx_put_image_to_window(g->window.mlx_ptr, g->window.win_ptr, g->texture[0].ptr, 0, 0);
-
 	mlx_hook(g->window.win_ptr, 3, 1L << 1, key_release, &g->player);
 	mlx_hook(g->window.win_ptr, 2, 1L << 0, exit_window, g);
-	// mlx_loop_hook(g->win.mlx_p, render, g);
+	mlx_loop_hook(g->window.mlx_ptr, first_display, g);
 	mlx_hook(g->window.win_ptr, 33, 1L << 17, &close_cub, g);
 	mlx_loop(g->window.mlx_ptr);
 }

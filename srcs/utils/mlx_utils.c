@@ -12,7 +12,7 @@
 
 #include "../../includes/so.h"
 
-int		color_utils(t_texture text, int x, int y)
+int	color_utils(t_texture text, int x, int y)
 {
 	char	*dst;
 

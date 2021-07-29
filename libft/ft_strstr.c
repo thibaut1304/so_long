@@ -15,7 +15,7 @@
 char	*ft_strstr(char *str, char *to_find)
 {
 	int	i;
-	int j;
+	int	j;
 
 	i = 0;
 	j = 0;

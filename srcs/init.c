@@ -20,7 +20,7 @@ static void	init_window(t_win *win)
 	win->h = 800;
 }
 
-static void		init_image(t_img *img)
+static void	init_image(t_img *img)
 {
 	img->img = NULL;
 	img->adr = NULL;
@@ -31,7 +31,7 @@ static void		init_image(t_img *img)
 	img->h = 800;
 }
 
-static void 	init_player(t_player *player)
+static void	init_player(t_player *player)
 {
 	player->x = -1;
 	player->y = -1;

@@ -12,9 +12,9 @@
 
 #include "libft.h"
 
-static int		charset(char const *set, char c)
+static int	charset(char const *set, char c)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (set[i])
@@ -26,20 +26,21 @@ static int		charset(char const *set, char c)
 	return (0);
 }
 
-static char		*strnew(size_t size)
+static char	*strnew(size_t size)
 {
 	char	*new;
 
-	if (!(new = (char *)malloc(sizeof(char) * size + 1)))
+	new = malloc(sizeof(char) * size + 1);
+	if (!new)
 		return (NULL);
 	ft_bzero(new, size + 1);
 	return (new);
 }
 
-char			*ft_strtrim(char const *s1, char const *set)
+char	*ft_strtrim(char const *s1, char const *set)
 {
-	int		min;
-	int		max;
+	int	min;
+	int	max;
 
 	if (!s1)
 		return (NULL);

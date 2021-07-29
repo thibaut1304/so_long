@@ -12,7 +12,7 @@
 
 #include "../../includes/so.h"
 
-int exit_window(int key, t_global *all)
+int	exit_window(int key, t_global *all)
 {
 	if (key == ARROW_UP || key == KEYBORD_W)
 		all->player.walk_direction = 1;
@@ -29,7 +29,7 @@ int exit_window(int key, t_global *all)
 	return (0);
 }
 
-int 	key_release(int key, t_player *player)
+int	key_release(int key, t_player *player)
 {
 	if (key == ARROW_DOWN || key == ARROW_UP)
 		player->walk_direction = 0;

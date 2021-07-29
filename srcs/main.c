@@ -12,10 +12,10 @@
 
 #include "../includes/so.h"
 
-static void 	init(t_global *g, char *file, t_list **list, t_list **error)
+static void	init(t_global *g, char *file, t_list **list, t_list **error)
 {
-	int res;
-	char *line;
+	int		res;
+	char	*line;
 
 	res = 1;
 	g->fd = open(file, O_RDONLY);
@@ -37,14 +37,14 @@ static void 	init(t_global *g, char *file, t_list **list, t_list **error)
 	close(g->fd);
 }
 
-
-
 void	load_window(t_global *g)
 {
-	g->window.win_ptr = mlx_new_window(g->window.mlx_ptr, g->size * g->number_columns, g->size * g->number_rows, "so_long");
+	g->window.win_ptr = mlx_new_window(g->window.mlx_ptr,
+			g->size * g->number_columns,
+			g->size * g->number_rows, "so_long");
 }
 
-void 	load_map(t_global *g)
+void	load_map(t_global *g)
 {
 	init_ptr_mlx(g);
 	load_imgage(g);
@@ -57,12 +57,11 @@ void 	load_map(t_global *g)
 	mlx_loop(g->window.mlx_ptr);
 }
 
-
-int		main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	t_global 	g;
-	t_list 		*list;
-	t_list 		*error;
+	t_global	g;
+	t_list		*list;
+	t_list		*error;
 
 	list = NULL;
 	error = NULL;

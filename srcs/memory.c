@@ -12,14 +12,14 @@
 
 #include "../includes/so.h"
 
-static void		free_image(t_global *g)
+static void	free_image(t_global *g)
 {
 	mlx_destroy_image(g->window.mlx_ptr, g->window.img.img);
 	g->window.img.img = NULL;
 	g->window.img.adr = NULL;
 }
 
-void		free_ptr(t_global *g)
+void	free_ptr(t_global *g)
 {
 	if (g->window.mlx_ptr)
 	{
@@ -35,9 +35,9 @@ void		free_ptr(t_global *g)
 	}
 }
 
-void 	free_g(t_global g)
+void	free_g(t_global g)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (g.map)
@@ -48,9 +48,9 @@ void 	free_g(t_global g)
 	}
 }
 
-void 	free_texture(t_global *g)
+void	free_texture(t_global *g)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < 5)
@@ -58,7 +58,6 @@ void 	free_texture(t_global *g)
 		if (g->texture[i].ptr)
 		{
 			mlx_destroy_image(g->window.mlx_ptr, g->texture[i].ptr);
-		
 			g->texture[i].ptr = NULL;
 			g->texture[i].data = NULL;
 		}
@@ -71,11 +70,10 @@ void 	free_texture(t_global *g)
 	}
 }
 
-void		free_global(t_list *list, t_global g, t_list *error)
+void	free_global(t_list *list, t_global g, t_list *error)
 {
 	ft_lstclear(&list, &del_list);
 	ft_lstclear(&error, &del_list);
 	free_texture(&g);
 	free_g(g);
 }
-

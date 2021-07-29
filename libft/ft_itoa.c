@@ -14,8 +14,8 @@
 
 static int	ft_size(int n)
 {
-	int i;
-	int neg;
+	int	i;
+	int	neg;
 
 	i = 0;
 	neg = 0;
@@ -34,7 +34,7 @@ static int	ft_size(int n)
 	return (i + neg);
 }
 
-char		*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	char		*str;
 	int			i;
@@ -44,7 +44,8 @@ char		*ft_itoa(int n)
 	nb = n;
 	size = ft_size(nb);
 	i = size;
-	if (!(str = (char *)malloc(sizeof(char) * (size + 1))))
+	str = (char *)malloc(sizeof(char) * (size + 1));
+	if (!str)
 		return (NULL);
 	if (n < 0)
 		str[0] = '-';

@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-static char		**ft_free(char **tab, int index)
+static char	**ft_free(char **tab, int index)
 {
 	while (index >= 0)
 	{
@@ -23,10 +23,10 @@ static char		**ft_free(char **tab, int index)
 	return (NULL);
 }
 
-static char		**count_words(char const *str, char charset, char **tab)
+static char	**count_words(char const *str, char charset, char **tab)
 {
-	int i;
-	int words;
+	int	i;
+	int	words;
 
 	i = 0;
 	words = 0;
@@ -38,17 +38,18 @@ static char		**count_words(char const *str, char charset, char **tab)
 		while (str[i] && str[i] == charset)
 			i++;
 	}
-	if (!(tab = (char **)malloc(sizeof(char*) * (words + 1))))
+	tab = malloc(sizeof(char *) * words + 1);
+	if (!tab)
 		return (NULL);
 	tab[words] = 0;
 	return (tab);
 }
 
-static char		**count_letters(char const *str, char charset, char **tab)
+static char	**count_letters(char const *str, char charset, char **tab)
 {
-	int i;
-	int index;
-	int letters;
+	int	i;
+	int	index;
+	int	letters;
 
 	i = 0;
 	index = 0;
@@ -60,7 +61,8 @@ static char		**count_letters(char const *str, char charset, char **tab)
 			letters++;
 			i++;
 		}
-		if (!(tab[index] = (char *)malloc(sizeof(char) * (letters + 1))))
+		tab[index] = malloc(sizeof(char) * letters + 1);
+		if (!tab[index])
 			return (ft_free(tab, index));
 		tab[index][letters] = 0;
 		index++;
@@ -70,11 +72,11 @@ static char		**count_letters(char const *str, char charset, char **tab)
 	return (tab);
 }
 
-static char		**split_copy(char const *str, char charset, char **tab)
+static char	**split_copy(char const *str, char charset, char **tab)
 {
-	int i;
-	int index;
-	int letters;
+	int	i;
+	int	index;
+	int	letters;
 
 	i = 0;
 	index = 0;
@@ -90,9 +92,9 @@ static char		**split_copy(char const *str, char charset, char **tab)
 	return (tab);
 }
 
-char			**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
-	char **tab;
+	char	**tab;
 
 	if (!s || !c)
 		return (NULL);

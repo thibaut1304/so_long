@@ -14,7 +14,7 @@
 
 int	detect_map_line(char *line, t_list **error, t_global *g)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (line[++i])
@@ -28,7 +28,7 @@ int	detect_map_line(char *line, t_list **error, t_global *g)
 	return (1);
 }
 
-void		record_map(char *line, t_list **list)
+void	record_map(char *line, t_list **list)
 {
 	t_list	*new_elem;
 
@@ -36,7 +36,7 @@ void		record_map(char *line, t_list **list)
 	ft_lstadd_back(list, new_elem);
 }
 
-int		is_in_charset(char c, char *charset)
+int	is_in_charset(char c, char *charset)
 {
 	while (*charset)
 	{

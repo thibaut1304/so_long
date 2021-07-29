@@ -12,10 +12,10 @@
 
 #include "../../includes/so.h"
 
-static int 	count_cols(t_list *grid)
+static int	count_cols(t_list *grid)
 {
-	int max;
-	int i;
+	int	max;
+	int	i;
 
 	max = 0;
 	while (grid)
@@ -28,7 +28,7 @@ static int 	count_cols(t_list *grid)
 	return (max);
 }
 
-static void 	check_number_args(t_global *g, t_list **error)
+static void	check_number_args(t_global *g, t_list **error)
 {
 	if (g->collectible < 1)
 		record_error(g, error, "You have less than 1 collection in the map\n");
@@ -42,10 +42,10 @@ static void 	check_number_args(t_global *g, t_list **error)
 		record_error(g, error, "The map is not rectangular\n");
 }
 
-static void 	check_args(t_global *g, t_list **error)
+static void	check_args(t_global *g, t_list **error)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = -1;
 	while (++i < g->number_rows)
@@ -70,7 +70,7 @@ static void 	check_args(t_global *g, t_list **error)
 
 static void	convert_grid(t_global *g, t_list *list, t_list **error)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (list)
@@ -87,10 +87,10 @@ static void	convert_grid(t_global *g, t_list *list, t_list **error)
 	check_args(g, error);
 }
 
-int		count_grid(t_global *g, t_list *grid, t_list **error)
+int	count_grid(t_global *g, t_list *grid, t_list **error)
 {
-	int column;
-	int rows;
+	int	column;
+	int	rows;
 
 	column = count_cols(grid);
 	rows = ft_lstsize(grid);

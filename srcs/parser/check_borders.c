@@ -10,13 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../../includes/so.h"
 
 static int	check_top_and_bottom(char **map, int line_count)
 {
-	int i;
-	int flag;
+	int	i;
+	int	flag;
 
 	flag = 0;
 	i = -1;
@@ -32,9 +31,9 @@ static int	check_top_and_bottom(char **map, int line_count)
 
 static int	check_left_and_right(char **map, t_global *g)
 {
-	int i;
-	int j;
-	int flag;
+	int	i;
+	int	j;
+	int	flag;
 
 	flag = 0;
 	i = -1;
@@ -54,7 +53,7 @@ static int	check_left_and_right(char **map, t_global *g)
 	return (flag);
 }
 
-void		check_borders(t_global *g, t_list **error)
+void	check_borders(t_global *g, t_list **error)
 {
 	int		flag;
 	char	**map;

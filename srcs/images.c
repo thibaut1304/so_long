@@ -14,13 +14,15 @@
 
 void	load_imgage(t_global *g)
 {
-	int y;
-	int x;
+	int	y;
+	int	x;
 
 	y = g->size * g->number_rows;
 	x = g->size * g->number_columns;
 	g->w = x;
 	g->h = y;
 	g->window.img.img = mlx_new_image(g->window.mlx_ptr, x, y);
-	g->window.img.adr = mlx_get_data_addr(g->window.img.img, &g->window.img.bits_per_pxl, &g->window.img.line_length, &g->window.img.endian);
+	g->window.img.adr = mlx_get_data_addr(g->window.img.img,
+			&g->window.img.bits_per_pxl, &g->window.img.line_length,
+			&g->window.img.endian);
 }

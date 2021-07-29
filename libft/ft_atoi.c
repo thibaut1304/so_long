@@ -10,25 +10,25 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-static int		ft_isspace(const char str)
+static int	ft_isspace(const char str)
 {
-	if (str == ' ' || str == '\t' || str == '\n' ||
-		str == '\v' || str == '\f' || str == '\r')
+	if (str == ' ' || str == '\t' || str == '\n'
+		|| str == '\v' || str == '\f' || str == '\r')
 		return (1);
 	return (0);
 }
 
-static int		ft_number(const char str)
+static int	ft_number(const char str)
 {
 	if (str >= '0' && str <= '9')
 		return (1);
 	return (0);
 }
 
-static int		ft_sign(const char *str)
+static int	ft_sign(const char *str)
 {
-	int sign;
-	int nb;
+	int	sign;
+	int	nb;
 
 	sign = 0;
 	nb = 0;
@@ -43,9 +43,9 @@ static int		ft_sign(const char *str)
 	return (sign);
 }
 
-static int		ft_atoi_plus(int sign, int i, const char *str)
+static int	ft_atoi_plus(int sign, int i, const char *str)
 {
-	int		nb;
+	int	nb;
 
 	nb = 0;
 	while (str[i] == '9')
@@ -71,7 +71,7 @@ static int		ft_atoi_plus(int sign, int i, const char *str)
 	return (2);
 }
 
-int				ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
 	int			i;
 	long int	result;

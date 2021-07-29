@@ -19,7 +19,8 @@ void	*ft_memalloc(size_t size)
 	size_t			i;
 
 	i = 0;
-	if (!(temp = malloc(size)))
+	temp = malloc(size);
+	if (!temp)
 		return (NULL);
 	temp_ptr = (unsigned char *)temp;
 	while (i < size)

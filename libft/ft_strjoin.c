@@ -12,10 +12,10 @@
 
 #include "libft.h"
 
-static char		*strcat(char *dest, char const *src)
+static char	*strcat(char *dest, char const *src)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	j = 0;
@@ -27,9 +27,9 @@ static char		*strcat(char *dest, char const *src)
 	return (dest);
 }
 
-static char		*strcpy(char *dest, char const *src)
+static char	*strcpy(char *dest, char const *src)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (src[i])
@@ -41,7 +41,7 @@ static char		*strcpy(char *dest, char const *src)
 	return (dest);
 }
 
-char			*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char		*str;
 	size_t		size;
@@ -56,7 +56,8 @@ char			*ft_strjoin(char const *s1, char const *s2)
 		size = ft_strlen(s2);
 	else
 		return (NULL);
-	if (!(str = (char *)malloc(sizeof(char) * size)))
+	str = (char *)malloc(sizeof(char) * size);
+	if (!str)
 		return (NULL);
 	str = strcpy(str, s1);
 	str = strcat(str, s2);

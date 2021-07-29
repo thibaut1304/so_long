@@ -28,8 +28,8 @@ static void	print_texture(t_global *g, int x, int y, int id)
 
 static int	display(t_global *g, int h, int w, int id)
 {
-	int width;
-	int height;
+	int		width;
+	int		height;
 
 	width = -1;
 	g->x_pxl = w * g->size;
@@ -69,7 +69,8 @@ int	first_display(t_global *g)
 		while (++j < g->number_columns)
 			select_texture(g, i, j);
 	}
-	mlx_put_image_to_window(g->window.mlx_ptr, g->window.win_ptr, g->window.img.img, 0, 0);
+	mlx_put_image_to_window(g->window.mlx_ptr, g->window.win_ptr,
+		g->window.img.img, 0, 0);
 	if (g->end == 1)
 	{
 		ft_putstr("Good Game !\n");

@@ -12,9 +12,9 @@
 
 #include "../../includes/so.h"
 
-int		check_extension(char *file)
+int	check_extension(char *file)
 {
-	int		i;
+	int	i;
 
 	i = 0;
 	while (file[i] != '\0')
@@ -26,7 +26,7 @@ int		check_extension(char *file)
 		return (0);
 }
 
-int 	begin(t_global *g, int argc, char *file, t_list **error)
+int	begin(t_global *g, int argc, char *file, t_list **error)
 {
 	if (argc != 2)
 	{

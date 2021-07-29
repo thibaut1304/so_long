@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_strncmp(char const *s1, char const *s2, unsigned int n)
+int	ft_strncmp(char const *s1, char const *s2, unsigned int n)
 {
-	unsigned int i;
+	unsigned int	i;
 
 	i = 0;
 	if (n == 0)

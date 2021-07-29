@@ -21,7 +21,7 @@ static int	check_move(t_global *g, int x, int y)
 	return (0);
 }
 
-static void	print_move(void)
+static void	print_move(t_global *g)
 {
 	ft_putstr("Move :");
 	ft_putnbr(g->move);
@@ -50,7 +50,7 @@ void	update_player(t_global *g)
 				g->player.y = y;
 				g->map[g->player.x][g->player.y] = 'P';
 				g->move += 1;
-				print_move();
+				print_move(g);
 			}
 		}
 	}

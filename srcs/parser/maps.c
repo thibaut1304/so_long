@@ -38,8 +38,6 @@ static void	check_number_args(t_global *g, t_list **error)
 		record_error(g, error, "You have less than 1 exit in the map\n");
 	if (g->start > 1)
 		record_error(g, error, "You have more than 1 player in the map\n");
-	if (g->number_rows == g->number_columns)
-		record_error(g, error, "The map is not rectangular\n");
 }
 
 static void	check_args(t_global *g, t_list **error)

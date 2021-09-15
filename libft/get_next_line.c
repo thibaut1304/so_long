@@ -22,6 +22,8 @@ int	get_next_line(int fd, char **line)
 	i = 0;
 	buf = 0;
 	*line = malloc(400000);
+	if (!*line)
+		return (0);
 	while (ret != 0 && buf != '\n')
 	{
 		ret = read(fd, &buf, 1);

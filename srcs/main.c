@@ -27,8 +27,10 @@ static void	init(t_global *g, char *file, t_list **list, t_list **error)
 	while (res > 0)
 	{
 		res = get_next_line(g->fd, &line);
-		if (!line[0])
+		if (!line[0] && res > 0)
 			record_error(g, error, "\\n in map\n");
+		else if (res == 0 && !line[0])
+			break ;
 		if (detect_map_line(line, error, g))
 			record_map(line, list);
 		free(line);

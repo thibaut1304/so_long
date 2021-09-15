@@ -58,7 +58,7 @@ ex:			${NAME}
 			./${NAME} maps/map.ber
 
 ev:			${NAME}		
-			@~/.local/bin/colour-valgrind -v --show-leak-kinds=all --tool=memcheck --leak-check=full  --track-origins=yes ./${NAME} maps/map.ber
+			@valgrind -v --show-leak-kinds=all --tool=memcheck --leak-check=full  --track-origins=yes ./${NAME} maps/map.ber
 
 clean:	
 			${RM} ${OBJS}

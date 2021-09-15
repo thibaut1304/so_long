@@ -27,6 +27,8 @@ static void	init(t_global *g, char *file, t_list **list, t_list **error)
 	while (res > 0)
 	{
 		res = get_next_line(g->fd, &line);
+		if (!line[0])
+			record_error(g, error, "\\n in map\n");
 		if (detect_map_line(line, error, g))
 			record_map(line, list);
 		free(line);
@@ -69,7 +71,8 @@ int	main(int argc, char **argv)
 	if (!begin(&g, argc, argv[1], &error))
 	{
 		init(&g, argv[1], &list, &error);
-		count_grid(&g, list, &error);
+		if (!error)
+			count_grid(&g, list, &error);
 		if (!error)
 		{
 			ft_lstclear(&list, &del_list);

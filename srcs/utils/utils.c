@@ -19,7 +19,7 @@ int	detect_map_line(char *line, t_list **error, t_global *g)
 	i = -1;
 	while (line[++i])
 	{
-		if (is_in_charset(line[i], "01CEP") == 0)
+		if (!is_in_charset(line[i], "01CEP"))
 		{
 			record_error(g, error, "Invalid character in the map\n");
 			return (0);

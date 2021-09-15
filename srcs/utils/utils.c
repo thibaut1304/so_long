@@ -23,7 +23,7 @@ int	detect_map_line(char *line, t_list **error, t_global *g)
 		{
 			record_error(g, error, "Invalid character in the map\n");
 			return (0);
-		}
+		}	
 	}
 	return (1);
 }
